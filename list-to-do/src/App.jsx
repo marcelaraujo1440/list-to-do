@@ -2,6 +2,7 @@ import { useState } from 'react'
 import "./App.css"
 import Todo from './components/todo'
 import TodoForm from './components/todoForm'
+import todo from './components/todo'
 
 function App() {
  const [todos, setTodos] = useState([
@@ -24,17 +25,37 @@ function App() {
       isCompleted: false,
     },
   ])
+  const addTodo = (text,category) =>{
+    const newTodos = [...todos,{
+      id: Math.floor(Math.random() *10000),
+      text,
+      category,
+      isCompleted : false,
+    },
+  ];
+    setTodos(newTodos);
+  };
 
+  const removeTodos = (id) =>{
+    const newTodos = [...todos];
+    const filteredTodos = newTodos.filter(todo => todo.id !== id ? todo : null);
+    setTodos(filteredTodos)
+  };
+  const completeTodos = (id) =>{
+    const newTodos = [...todos];
+    newTodos.map((todo) => todo.id === id ? todo.isCompleted = !todo.isCompleted : todo)
+    setTodos(newTodos)
+  }
   return (
-    //para usar o codigo de java script no jsx, tem que usar as chaves
+  
     <div className="app">
       <h1>Lista de Tarefas</h1>
       <div className="todo-list">
         {todos.map((todo) =>( //percorreu o array inteiro com essa função (.map)
-            <Todo todo={todo}/>
+            <Todo key={todo.id} todo={todo}  removeTodos={removeTodos} completeTodos={completeTodos} />
         ))}
       </div>
-      <TodoForm />
+      <TodoForm addTodo={addTodo}/>
     </div>
   )
 }

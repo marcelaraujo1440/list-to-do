@@ -37,9 +37,24 @@ button{
   cursor: pointer;
   opacity: 0.8s;
   transition: 0.3s;
+  margin-right: 10px;
 }
 button:hover{
   opacity: 1s;
+}
+.todo-list{
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #555 ;
+}
+.todo{
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
 }
 .todo-form{
   padding-bottom: 1.5rem;
@@ -50,4 +65,12 @@ input,select{
   border: 1px solid #ddd;
   border-radius: 5px;
   width: 100%;
+}
+.remove{
+  color: #f4f4f4;
+  background-color: red;
+}
+.complete{
+  color: #f4f4f4;
+  background-color: green;
 }
